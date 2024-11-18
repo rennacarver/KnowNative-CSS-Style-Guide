@@ -1,10 +1,12 @@
 **_KnowNative is in the process of migrating from CSS to SASS & BEM. Please disregard this guide until this message is removed. Thanks!!_**. November 17th, 2024, Renna Carver
 
+Must-Know
+
 Introduction
 
 Hello Team! Here you’ll find a quick guide on how we do CSS for the KnowNative app. KnowNative uses SASS with SCSS syntax and BEM as the naming convention. We use BEM very loosely here. The only rule we enforce is that all class names must be prefixed by the component name. This prevents class name conflicts.
 
-Only one rule: All class names must be prefixed by the component name
+Only one rule: All class names must be prefixed by the component name!
 
 👀🚫 These class names can lead to problems because title is a repeated class and pollutes the namespace
 
@@ -50,6 +52,8 @@ to
 .scss
 
 And you’re done! The build tool (currently Vite) will automatically watch these files and compile them to CSS in the background as you make changes.
+
+FAQs
 
 What’s SASS?
 
@@ -101,3 +105,65 @@ text-transform: uppercase
 text-decoration: none
 
 Read more at @Sass Fundamentals
+
+File Structure
+
+scss/
+
+├── base/
+
+│ ├── \_reset.scss // CSS reset or normalize styles
+
+│ ├── \_typography.scss // Global typography styles
+
+│ ├── \_variables.scss // Variables for colors, fonts, etc.
+
+│ ├── \_mixins.scss // Reusable mixins
+
+│ └── \_global.scss // Other global styles
+
+├── layout/
+
+│ ├── \_header.scss // Header styles
+
+│ ├── \_footer.scss // Footer styles
+
+│ ├── \_grid.scss. // Grid and layout-related styles
+
+│ └── \_container.scss // Container and wrappers
+
+├── dashboard/ //This is based on the demo. This will be subject to change based on final app decisions
+
+│ ├── \_sidenav.scss //side navigation styles
+
+│ ├── \_topnav.scss //top navigation styles
+
+│ ├── \_read.scss. //what the dashboard will look like
+
+│ └── \_study.scss
+
+│ └── translate.scss
+
+├── components/
+
+│ ├── \_buttons.scss // Button styles
+
+│ ├── \_cards.scss // Card component styles
+
+│ └── \_forms.scss // Form styles
+
+├── pages/
+
+│ ├── \_home.scss // Homepage-specific styles
+
+│ ├── \_about.scss // About page-specific styles
+
+│ └── \_contribute.scss // Contact page-specific styles
+
+├── themes/
+
+│ ├── \_dark.scss // Dark mode styles
+
+│ └── \_light.scss // Light mode styles
+
+└── main.scss // Main entry point that imports all partials
