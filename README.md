@@ -64,14 +64,14 @@ Both syntaxes are valid. The SASS syntax has been chosen to ensure consistency a
 🚫 Vanilla CSS syntax can be verbose
 ```
 :root {
---primary-color: #3498db;
---font-size-large: 1.5rem;
---spacing-unit: 16px;
+  --primary-color: #3498db;
+  --font-size-large: 1.5rem;
+  --spacing-unit: 16px;
 }
 button {
-background-color: var(--primary-color);
-font-size: var(--font-size-large);
-padding: var(--spacing-unit);
+  background-color: var(--primary-color);
+  font-size: var(--font-size-large);
+  padding: var(--spacing-unit);
 }
 ```
 
@@ -82,8 +82,8 @@ $font-size-large: 1.5rem;
 $spacing-unit: 16px;
 
 button {
-background-color: $primary-color;
-font-size: $font-size-large;
+  background-color: $primary-color;
+  font-size: $font-size-large;
 }
 ```
 
