@@ -256,15 +256,15 @@ Explanation:
 
 The & syntax in SASS refers to the parent selector, creating prefixed class names.
 
-The ```\_\_``` (double underscore) syntax is used for elements inside the parent selector.
+The ```__``` (double underscore) syntax is used for elements inside the parent selector.
 
 The ```--``` (double hyphen) syntax is used for modifiers such as --highlighted or --active .
 
 This method ensures all classes within .card are properly namespaced.
 
-## Avoid ‘grandchild’ selectors with multiple underscores ```\_\_```
+## Avoid ‘grandchild’ selectors with multiple underscores ```__```
 
-If an Element is nested two levels deep inside of a Block, just use one double underscore ```\_\_```
+If an Element is nested two levels deep inside of a Block, just use one double underscore ```__```
 
 🚫 Multiple underscores leads to really long class names
 ```
@@ -316,9 +316,9 @@ td.final-summary { background-color: green }
 ```
 ✅ Code is simpler and specificity is low and consistent across all three selectors
 ```
-.cell**data { background-color: white }
-.cell**summary { background-color: yellow }
-.cell\_\_final-summary { background-color: green }
+.cell__data { background-color: white }
+.cell__summary { background-color: yellow }
+.cell__final-summary { background-color: green }
 ```
 ## Avoid nesting classes (whenever possible)
 
@@ -327,23 +327,23 @@ td.final-summary { background-color: green }
 SCSS
 ```
 .navbar {
-  .list\_\_item {
+  .list__item {
   margin: 0;
   padding: 0;
   list-style: none;
   }
 
-  .navbar\_\_list { display: inline-block; }
+  .navbar__list { display: inline-block; }
 }
 ```
 Compiled CSS
 ```
-.navbar .list**item {
+.navbar .list__item {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.navbar .navbar**list {
+.navbar .navbar__list {
   display: inline-block;
 }
 ```
@@ -351,24 +351,24 @@ Compiled CSS
 
 SCSS
 ```
-.list\_\_item {
+.list__item {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.navbar\_\_list {
+.navbar__list {
   display: inline-block;
 }
 ```
 Compiled CSS
 ```
-.list**item {
+.list__item {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.navbar**list {
+.navbar__list {
   display: inline-block;
 }
 ```
