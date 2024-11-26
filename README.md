@@ -2,7 +2,7 @@
 
 Introduction
 
-Hello Team! Here you’ll find a quick guide on CSS for the KnowNative app. KnowNative uses SASS with SCSS syntax and BEM as the naming convention. We use BEM very loosely here. The only rule we enforce is that all class names must be prefixed by the component name. This prevents class name conflicts.
+Here you’ll find a quick guide on CSS for the KnowNative app. KnowNative uses SASS with SCSS syntax and BEM as the naming convention. BEM is used somewhat loosely here. The only rule enforced is that all class names must be prefixed by the component name. This prevents class name conflicts.
 
 Getting Started
 
@@ -80,29 +80,6 @@ button {
 background-color: $primary-color;
 font-size: $font-size-large;
 }
-
-Rule Three
-
-Keep specificity low
-
-Avoid nesting
-
-Use classes instead of tags and IDs
-
-Let’s say you have a table with these style rules:
-
-td.data { background-color: white }
-td.summary { background-color: yellow }
-
-However, in another component, you need to redefine the background of a particular cell:
-
-.final-summary { background-color: green }
-
-This wouldn’t work because tag.class always has a higher specificity than just .class.
-
-You would add a tag name to the rule to make it work:
-
-td.final-summary { background-color: green }
 
 FAQs
 
@@ -276,9 +253,9 @@ This method ensures all classes within .card are properly namespaced.
 
 Avoid ‘grandchild’ selectors with multiple underscores \_\_
 
-If an Element is nested two levels deep inside of a Block, just use a one double underscore \_\_
+If an Element is nested two levels deep inside of a Block, just use one double underscore \_\_
 
-🚫 Multiple underscores
+🚫 Multiple underscores leads to really long class names
 
 <div class="c-card">
     <div class="c-card__header">
@@ -294,7 +271,7 @@ If an Element is nested two levels deep inside of a Block, just use a one double
     </div>
 </div>
 
-✅
+✅ Much better!
 
 <div class="c-card">
     <div class="c-card__header">
@@ -309,27 +286,94 @@ If an Element is nested two levels deep inside of a Block, just use a one double
     </div>
 </div>
 
-Flat selectors
+Use classes instead of tags
 
-Access all elements through classes
+🚫 Let’s say you have a table with these style rules:
 
-Avoid nesting more than two levels deep
+td.data { background-color: white }
+td.summary { background-color: yellow }
 
-Avoid id’s (specificity is too high and is hard to overwrite further down in the cascade)
+However, in another component, you need to redefine the background of a particular cell:
 
-Avoid tags (tags are low specificity however tags don’t have meaning. class names are preferred)
+.final-summary { background-color: green }
 
-(need a picture of good and bad selectors) Renna
+This wouldn’t work because tag.class always has a higher specificity than just .class.
 
-Naming should be clear enough to not need comments
+You would add a tag name to the rule to make it work:
 
-Nesting can cause problems
+td.final-summary { background-color: green }
 
-Things can get very messy if you aren't careful when creating descendant selectors or using the parent selector & to create compund selectors.
+✅ Code is simpler and specificity is low and consistent across all three selectors
 
-A general rule of thumb is trying to stick to a maximum of 2 or 3 nesting levels deep.
+.cell**data { background-color: white }
+.cell**summary { background-color: yellow }
+.cell\_\_final-summary { background-color: green }
 
-Nesting can make your code harder to search, because the classes in your Sass do not match the selectors in the compiles CSS file.
+Avoid nesting classes (whenever possible)
+
+🚫 Specificity is high
+
+SCSS
+
+.navbar {
+.list\_\_item {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+.navbar\_\_list { display: inline-block; }
+}
+
+Compiled CSS
+
+.navbar .list**item {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.navbar .navbar**list {
+display: inline-block;
+}
+
+✅ Specificity is low and code is more readable
+
+SCSS
+
+.list\_\_item {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+.navbar\_\_list {
+display: inline-block;
+}
+
+Compiled CSS
+
+.list**item {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.navbar**list {
+display: inline-block;
+}
+
+Avoid using IDs
+
+🚫 High specificity that is difficult to overwrite further down in the cascade
+
+#paragraphOne {  
+text-align: center;  color: red;
+}
+
+✅ Low specificity that is easy to overwrite
+
+.paragraph-one {  
+text-align: center;  color: red;
+}
 
 File Structure (in development)
 
